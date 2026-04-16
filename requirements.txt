@@ -1,0 +1,7 @@
+chromadb
+pymupdf
+pandas
+streamlit
+requests
+numpy
+python-dotenv

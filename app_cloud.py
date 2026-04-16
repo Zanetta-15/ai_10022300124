@@ -1,11 +1,10 @@
-# app.py
+# app_cloud.py
 # Name: Zanetta Crentsil
 # Index Number: 10022300124
 
 import streamlit as st
-import json
 import os
-from pipeline import run_pipeline
+from pipeline_cloud import run_pipeline
 
 st.set_page_config(page_title="ACity RAG Chatbot", page_icon="🎓", layout="wide")
 
@@ -18,7 +17,7 @@ with st.sidebar:
     k = st.slider("Number of chunks to retrieve", 1, 10, 5)
     st.markdown("---")
     st.markdown("**Index:** 10022300124")
-    st.markdown("**Model:** llama3.2 (Ollama)")
+    st.markdown("**Model:** gemma-3-4b (OpenRouter)")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
