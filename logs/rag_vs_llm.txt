@@ -1,0 +1,41 @@
+
+============================================================
+Query: What will Ghana's budget be in 2030?
+Timestamp: 2026-04-16T21:11:05.421553
+
+RAG Answer:
+I don't have that information in my documents.
+
+Pure LLM Answer:
+I don't have access to a crystal ball, and it's difficult to predict future budget allocations with certainty. However, I can provide some context and insights that might help.
+
+Ghana's budget is typically presented annually by the government, and the country has a history of using various fiscal policies to manage its economy. The Ghanaian government has made efforts in recent years to diversify its economy, increase revenue collection, and reduce debt.
+
+According to the World Bank, Ghana's GDP (Gross Domestic Product) growth rate is expected to be around 5-6% per annum between 2023 and 2030. This growth rate is supported by various sectors, including agriculture, mining, and services.
+
+In terms of budget allocation, Ghana typically allocates a significant portion of its revenue towards the following areas:
+
+1. Security: 25-30% of total expenditure
+2. Education: 15-20% of total expenditure
+3. Healthcare: 10-15% of total expenditure
+4. Infrastructure development: 5-10% of total expenditure
+
+However, these figures are subject to change based on various factors, including global economic trends, commodity prices, and domestic politics.
+
+To make an educated guess about Ghana's budget in 2030, I would suggest considering the following:
+
+* Ghana's government has stated its intention to increase public spending on infrastructure development and human resource development.
+* The country aims to achieve a middle-income status by 2028, which may require increased investment in sectors like education, healthcare, and infrastructure.
+* Ghana's economy is expected to benefit from the increasing demand for gold and other minerals, which could lead to higher revenues for the government.
+
+Taking these factors into account, it's difficult to predict exactly what Ghana's budget will be in 2030. However, a possible allocation breakdown could look like this:
+
+* Revenue: 45-50% of GDP
+* Expenditure:
+	+ Security: 25-30%
+	+ Education: 20-25%
+	+ Healthcare: 15-20%
+	+ Infrastructure development: 10-15%
+	+ Social welfare programs: 5-10%
+
+Please note that this is a rough estimate and should be taken as a hypothetical scenario rather than an actual projection. The Ghanaian government's budgetary priorities and allocations can change based on various factors, including global economic trends, commodity prices, and domestic politics.
