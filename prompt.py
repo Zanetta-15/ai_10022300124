@@ -2,7 +2,7 @@
 # Name: Zanetta Crentsil
 # Index Number: 10022300124
 
-def build_context(chunks, max_words=2000):
+def build_context(chunks, max_words=400):
     context_parts = []
     word_count = 0
 
