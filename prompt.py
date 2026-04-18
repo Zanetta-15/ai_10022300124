@@ -2,7 +2,7 @@
 # Name: Zanetta Crentsil
 # Index Number: 10022300124
 
-def build_context(chunks, max_words=400):
+def build_context(chunks, max_words=150):
     context_parts = []
     word_count = 0
 
@@ -24,11 +24,9 @@ def build_prompt(query, chunks, template="default"):
     context = build_context(chunks)
 
     if template == "default":
-        prompt = f"""You are an AI assistant for Academic City University with access to Ghana's 2025 Budget Statement and Ghana Election Results.
-
-Use ONLY the context below to answer the question.
-If the answer is not in the context, say: "I don't have that information in my documents."
-Do NOT make up numbers, names, or facts.
+        prompt = f"""You are an AI assistant with access to Ghana's 2025 Budget and Election Results.
+Use ONLY the context below. If not in context say "I don't have that information."
+Do NOT make up facts.
 
 CONTEXT:
 {context}
@@ -38,28 +36,26 @@ QUESTION: {query}
 ANSWER:"""
 
     elif template == "strict":
-        prompt = f"""You are a factual assistant. Answer using ONLY the excerpts provided.
-Do not use any outside knowledge. If unsure, say "Not found in documents."
-Quote specific figures when available.
+        prompt = f"""Answer using ONLY the excerpts provided.
+If unsure say "Not found in documents."
 
 EXCERPTS:
 {context}
 
 QUESTION: {query}
 
-ANSWER (cite your source):"""
+ANSWER:"""
 
     elif template == "conversational":
-        prompt = f"""You are a helpful Academic City University chatbot.
-Answer the question below in a friendly, clear way using only the provided context.
-If the context doesn't contain the answer, politely say so.
+        prompt = f"""You are a helpful chatbot. Answer using only the context below.
+If not found, politely say so.
 
-Here is what I found in the documents:
+CONTEXT:
 {context}
 
-User asked: {query}
+QUESTION: {query}
 
-Response:"""
+RESPONSE:"""
 
     print(f"[PROMPT] Using template: '{template}'")
     print(f"[PROMPT] Final prompt length: {len(prompt.split())} words")
@@ -70,12 +66,10 @@ def compare_templates(query, chunks):
     print("\n" + "="*60)
     print(f"PROMPT EXPERIMENT — Query: {query}")
     print("="*60)
-
     for template in ["default", "strict", "conversational"]:
         prompt = build_prompt(query, chunks, template=template)
         print(f"\n[Template: {template}]")
         print(prompt[:300] + "...\n")
-
     print("→ Experiment: Send each to LLM and compare outputs in logs/experiment_log.md")
 
 

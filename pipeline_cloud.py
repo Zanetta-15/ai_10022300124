@@ -10,10 +10,9 @@ from prompt import build_prompt
 GROQ_KEY = "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"
 
 def generate(prompt):
-    # Hard truncate to 600 words max
     words = prompt.split()
-    if len(words) > 600:
-        prompt = " ".join(words[:600])
+    if len(words) > 400:
+        prompt = " ".join(words[:400])
 
     response = requests.post(
         "https://api.groq.com/openai/v1/chat/completions",
@@ -33,7 +32,8 @@ def generate(prompt):
         raise Exception(f"Groq error: {result}")
     return result["choices"][0]["message"]["content"]
 
-def run_pipeline(query, k=3, template="default"):
+
+def run_pipeline(query, k=2, template="default"):
     chunks = retrieve(query, k=k)
     prompt = build_prompt(query, chunks, template=template)
     answer = generate(prompt)
