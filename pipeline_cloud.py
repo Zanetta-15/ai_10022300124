@@ -10,10 +10,10 @@ from prompt import build_prompt
 GROQ_KEY = "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"
 
 def generate(prompt):
-    # Truncate prompt if too long
+    # Hard truncate to 600 words max
     words = prompt.split()
-    if len(words) > 800:
-        prompt = " ".join(words[:800])
+    if len(words) > 600:
+        prompt = " ".join(words[:600])
 
     response = requests.post(
         "https://api.groq.com/openai/v1/chat/completions",
@@ -24,7 +24,7 @@ def generate(prompt):
         json={
             "model": "llama-3.1-8b-instant",
             "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 300
+            "max_tokens": 200
         },
         timeout=30
     )
