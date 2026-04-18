@@ -2,17 +2,24 @@
 # Name: Zanetta Crentsil
 # Index Number: 10022300124
 
-import os
 import requests
 from retriever import retrieve
-from prompt import build_prompt
 
 GROQ_KEY = "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"
 
-def generate(prompt):
+def generate(context, query):
+    prompt = f"""Based on this data, answer the question directly and concisely.
+
+DATA:
+{context}
+
+QUESTION: {query}
+
+ANSWER:"""
+
     words = prompt.split()
-    if len(words) > 500:
-        prompt = " ".join(words[:500])
+    if len(words) > 400:
+        prompt = " ".join(words[:400])
 
     response = requests.post(
         "https://api.groq.com/openai/v1/chat/completions",
@@ -21,9 +28,9 @@ def generate(prompt):
             "Content-Type": "application/json"
         },
         json={
-            "model": "mixtral-8x7b-32768",
+            "model": "llama-3.1-8b-instant",
             "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 200
+            "max_tokens": 150
         },
         timeout=30
     )
@@ -52,11 +59,12 @@ def run_pipeline(query, k=5, template="default"):
 
     chunks = chunks[:2]
 
-    prompt = build_prompt(query, chunks, template=template)
-    answer = generate(prompt)
+    context = "\n\n".join([c["text"][:300] for c in chunks])
+    answer = generate(context, query)
+
     return {
         "query": query,
         "chunks": chunks,
-        "prompt": prompt,
+        "prompt": f"Context: {context}\nQuestion: {query}",
         "response": answer
     }
