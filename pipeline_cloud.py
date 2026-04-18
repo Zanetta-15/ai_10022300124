@@ -10,23 +10,31 @@ from prompt import build_prompt
 GROQ_KEY = "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"
 
 def generate(prompt):
-    response = requests.post(
-        "https://api.groq.com/openai/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {GROQ_KEY}",
-            "Content-Type": "application/json"
-        },
-        json={
-            "model": "llama-3.1-8b-instant",
-            "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 500
-        },
-        timeout=30
-    )
-    result = response.json()
-    if "choices" not in result:
-        raise Exception(f"Groq error: {result}")
-    return result["choices"][0]["message"]["content"]
+    try:
+        response = requests.post(
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {GROQ_KEY}",
+                "Content-Type": "application/json"
+            },
+            json={
+                "model": "llama-3.1-8b-instant",
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": 500
+            },
+            timeout=30
+        )
+        result = response.json()
+        if "choices" in result:
+            return result["choices"][0]["message"]["content"]
+        elif "error" in result:
+            error_msg = result["error"].get("message", "Unknown error")
+            if "rate" in error_msg.lower():
+                return "⚠️ Rate limit reached. Please wait 10 seconds and try again."
+            return f"⚠️ API error: {error_msg}"
+        return "⚠️ Unexpected response from AI. Please try again."
+    except Exception as e:
+        return f"⚠️ Connection error: {str(e)}. Please try again."
 
 def run_pipeline(query, k=5, template="default"):
     chunks = retrieve(query, k=k)
