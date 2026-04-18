@@ -3,7 +3,17 @@
 # Index Number: 10022300124
 
 import streamlit as st
+import os
 from pipeline_cloud import run_pipeline
+
+# Build index if it doesn't exist
+@st.cache_resource
+def initialize():
+    if not os.path.exists("./chroma_db"):
+        import subprocess
+        subprocess.run(["python3", "ingest.py"])
+
+initialize()
 
 st.set_page_config(page_title="Ghana Budget & Elections RAG Chatbot", page_icon="📊", layout="wide")
 
