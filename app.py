@@ -3,14 +3,12 @@
 # Index Number: 10022300124
 
 import streamlit as st
-import json
-import os
 from pipeline import run_pipeline
 
-st.set_page_config(page_title="ACity RAG Chatbot", page_icon="🎓", layout="wide")
+st.set_page_config(page_title="Ghana Budget & Elections RAG Chatbot", page_icon="📊", layout="wide")
 
-st.title("🎓 Academic City RAG Chatbot")
-st.markdown("Ask questions about Ghana's **2025 Budget** or **Election Results**")
+st.title("📊 Ghana Budget & Elections RAG Chatbot")
+st.markdown("Ask questions about Ghana's **2025 Budget Statement** or **Presidential Election Results**")
 
 with st.sidebar:
     st.header("Settings")
@@ -18,7 +16,9 @@ with st.sidebar:
     k = st.slider("Number of chunks to retrieve", 1, 10, 5)
     st.markdown("---")
     st.markdown("**Index:** 10022300124")
-    st.markdown("**Model:** llama3.2 (Ollama)")
+    st.markdown("**Model:** llama3.2:1b (Ollama)")
+    st.markdown("**Vector Store:** ChromaDB")
+    st.markdown("**Embeddings:** all-MiniLM-L6-v2")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
