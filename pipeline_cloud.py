@@ -21,7 +21,7 @@ def generate(prompt):
             "Content-Type": "application/json"
         },
         json={
-            "model": "llama-3.1-8b-instant",
+            "model": "mixtral-8x7b-32768",
             "messages": [{"role": "user", "content": prompt}],
             "max_tokens": 200
         },
@@ -45,13 +45,11 @@ def is_election_query(query):
 def run_pipeline(query, k=5, template="default"):
     chunks = retrieve(query, k=k)
 
-    # If election query, prioritize election chunks
     if is_election_query(query):
         election_chunks = [c for c in chunks if c["source"] == "election_csv"]
         budget_chunks = [c for c in chunks if c["source"] == "budget_pdf"]
         chunks = election_chunks + budget_chunks
 
-    # Take only top 2 chunks to stay within token limit
     chunks = chunks[:2]
 
     prompt = build_prompt(query, chunks, template=template)
