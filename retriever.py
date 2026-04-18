@@ -27,7 +27,7 @@ def expand_query(query):
         expansions.append(f"Ghana 2025 budget fiscal policy {query}")
 
     # Election-related expansions
-    if any(w in q for w in ["election", "vote", "result", "winner", "candidate", "won", "party", "npp", "ndc", "region"]):
+    if any(w in q for w in ["election", "vote", "result", "winner", "candidate", "candidates", "won", "party", "npp", "ndc", "region", "presidential", "ran", "2004", "2008", "2012", "2016", "2020", "1996", "2000"]):
         expansions.append(f"Ghana election results votes constituency {query}")
         expansions.append(f"parliamentary presidential results {query}")
 
